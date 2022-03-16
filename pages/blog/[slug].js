@@ -4,8 +4,10 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import SyntaxHighlighter from 'react-syntax-highlighter'
+import Image from 'next/image'
 
-import Button from '../../components/Button.jsx'
+import Button from '../../components/Button'
+import YouTube from '../../components/YouTube'
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const markdownWithMeta = fs.readFileSync(path.join('posts',
@@ -38,11 +40,25 @@ export const getStaticPaths = async () => {
   }
 }
 
-const PostPage = ({ frontMatter: { title }, mdxSource }) => {
+const PostPage = ({ frontMatter, mdxSource }) => {
   return (
     <div className="mt-4">
-      <h1>{title}</h1>
-      <MDXRemote {...mdxSource} components={{ Button, SyntaxHighlighter }} />
+      <Image
+        src={frontMatter.thumbnailUrl}
+        className="img-fluid mt-1 rounded-start"
+        alt="thumbnail"
+        width={1000}
+        height={400}
+        objectFit="cover"
+      />
+      <h1>{frontMatter.title}</h1>
+      <p>{frontMatter.date}</p>
+      <div>
+        {frontMatter.tags.map((item) => (
+            <span>{item}</span>
+        ))}
+      </div>
+      <MDXRemote {...mdxSource} components={{ Button, YouTube, SyntaxHighlighter }} />
     </div>
   )
 }
