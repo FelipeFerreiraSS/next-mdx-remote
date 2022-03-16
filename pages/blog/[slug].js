@@ -1,3 +1,12 @@
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+
+import Button from '../../components/Button.jsx'
+
 export const getStaticProps = async ({ params: { slug } }) => {
   const markdownWithMeta = fs.readFileSync(path.join('posts',
     slug + '.mdx'), 'utf-8')
@@ -28,3 +37,14 @@ export const getStaticPaths = async () => {
     fallback: false
   }
 }
+
+const PostPage = ({ frontMatter: { title }, mdxSource }) => {
+  return (
+    <div className="mt-4">
+      <h1>{title}</h1>
+      <MDXRemote {...mdxSource} components={{ Button, SyntaxHighlighter }} />
+    </div>
+  )
+}
+
+export default PostPage
