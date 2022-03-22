@@ -56,7 +56,7 @@ const PostPage = ({ frontMatter, mdxSource }) => {
       <Date className="text-muted" dateString={frontMatter.date} />
       <div>
         {frontMatter.tags.map((item) => (
-            <span>{item}</span>
+            <span key={item}>{item}</span>
         ))}
       </div>
       <MDXRemote {...mdxSource} components={{ Button, YouTube, SyntaxHighlighter }} />
