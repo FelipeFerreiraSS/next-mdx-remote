@@ -4,6 +4,8 @@ import Link from 'next/link'
 // import path from 'path'
 // import matter from 'gray-matter'
 
+import Date from '../components/date'
+
 import { getSortedPostsData } from '../lib/posts'
 
 export default function Home({ allPostsData }) {
@@ -19,7 +21,7 @@ export default function Home({ allPostsData }) {
                   <h5 className="card-title">{post.title}</h5>
                   <p className="card-text">{post.description}</p>
                   <p className="card-text">
-                    <small className="text-muted">{post.date}</small>
+                    <Date className="text-muted" dateString={post.date} />
                   </p>
                 </div>
               </div>

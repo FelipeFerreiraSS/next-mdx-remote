@@ -8,6 +8,7 @@ import Image from 'next/image'
 
 import Button from '../../components/Button'
 import YouTube from '../../components/YouTube'
+import Date from '../../components/date'
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const markdownWithMeta = fs.readFileSync(path.join('posts',
@@ -52,7 +53,7 @@ const PostPage = ({ frontMatter, mdxSource }) => {
         objectFit="cover"
       />
       <h1>{frontMatter.title}</h1>
-      <p>{frontMatter.date}</p>
+      <Date className="text-muted" dateString={frontMatter.date} />
       <div>
         {frontMatter.tags.map((item) => (
             <span>{item}</span>
