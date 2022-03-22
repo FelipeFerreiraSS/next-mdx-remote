@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { getSortedPostsData } from '../lib/posts'
 
 export default function Home({ allPostsData }) {
-  console.log(allPostsData)
+  // console.log(allPostsData)
   return (
     <div className="mt-5">
       {allPostsData.map((post, index) => (
