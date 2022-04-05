@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Button from '../../components/Button'
 import YouTube from '../../components/YouTube'
 import Date from '../../components/date'
+import TextStyle from '../../components/TextStyle'
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const markdownWithMeta = fs.readFileSync(path.join('posts',
@@ -59,7 +60,7 @@ const PostPage = ({ frontMatter, mdxSource }) => {
             <span key={item}>{item}</span>
         ))}
       </div>
-      <MDXRemote {...mdxSource} components={{ Button, YouTube, SyntaxHighlighter }} />
+      <MDXRemote {...mdxSource} components={{ Button, YouTube, SyntaxHighlighter, TextStyle}} />
     </div>
   )
 }
