@@ -5,6 +5,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import Button from '../../components/Button'
 import YouTube from '../../components/YouTube'
@@ -45,6 +46,13 @@ export const getStaticPaths = async () => {
 const PostPage = ({ frontMatter, mdxSource }) => {
   return (
     <div className="mt-4">
+    <div>
+      <Link href="/">
+        <button>
+          Home
+        </button>
+      </Link>
+    </div>
       <Image
         src={frontMatter.thumbnailUrl}
         className="img-fluid mt-1 rounded-start"
